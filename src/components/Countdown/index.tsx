@@ -38,10 +38,8 @@ export const Countdown = ({
 
 	return (
 		<div className={`${styles.countdown} ${customClass}`}>
-			{label && (
-				<div className={`${styles.label} countdown-label`}>{label}</div>
-			)}
-			<div className={`${styles.counter} countdown-counter`}>{counter}</div>
+			{label && <div className={`${styles.label}`}>{label}</div>}
+			<div className={`${styles.counter}`}>{counter}</div>
 		</div>
 	);
 };
