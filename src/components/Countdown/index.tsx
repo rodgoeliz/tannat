@@ -3,13 +3,13 @@ import * as styles from "./index.module.scss";
 import { formatTimeHHMMSS } from "../../utils/formatTimeHHMMSS";
 
 export const Countdown = ({
-	seconds,
+	seconds = 300,
 	label = "Reserving your wines for",
 	loop = false,
 	customClass = "",
 	onFinish = () => {},
 }: {
-	seconds: number;
+	seconds?: number;
 	label?: string;
 	loop?: boolean;
 	customClass?: string;
@@ -39,7 +39,9 @@ export const Countdown = ({
 	return (
 		<div className={`${styles.countdown} ${customClass}`}>
 			{label && <div className={`${styles.label}`}>{label}</div>}
-			<div className={`${styles.counter}`}>{counter}</div>
+			<div aria-label="offer countdown" className={`${styles.counter}`}>
+				{counter}
+			</div>
 		</div>
 	);
 };

@@ -6,7 +6,6 @@ import HeaderComponent from "../components/HeaderCountdown";
 const Counter = (): JSX.Element => (
 	<>
 		<HeaderComponent />
-
 		<ProductGrid />
 	</>
 );

@@ -4,6 +4,8 @@ Steps
 
 Config 
 
+Added biome linter
+
 WHAT - added volta, to manage node version (pined node version of nvmrc)
 WHY - i stoped using nvm at some point, didn't want to install it on my local env, pinning the node version as a part of the volta config was faster
 
@@ -22,3 +24,6 @@ Date on CountDown
 Date should be used to have a more exact timer, because the useTimeout doesn't makes it a guarantee that the time will actually go down every 1 second
 for example if you have tab performance saving on chrome, the timer will actually just stop.
 by using init date and calculating the difference between current time and initial time you get a correct date, might need to tweak the timeout time for this to work
+
+
+

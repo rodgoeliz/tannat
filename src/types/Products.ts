@@ -1,11 +1,11 @@
-import { Award } from './Award';
+import type { Award } from './Award';
 
 export type Product = {
   "id": number;
   "special_notes": string;
   "name": string;
   "tag_line": string;
-  "vintage":string;
+  "vintage": string;
   "origin": string;
   "fanciful_varietal": string;
   "msrp": number;

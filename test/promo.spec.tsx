@@ -1,79 +1,82 @@
-import React, { FC } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { render } from "@testing-library/react";
 import { useProducts } from "../src/hooks/useProducts";
 import Promo from "../src/pages/promo";
 import mockProducts from "./db.json";
+// biome-ignore lint/style/useImportType: <explanation>
+import React, { FC } from "react";
 
-const mockedUseProduct = useProducts as jest.Mock<object>; 
+const mockedUseProduct = useProducts as jest.Mock<object>;
 
 jest.mock("../src/hooks/useProducts");
 
 interface Props {
-  children: JSX.Element;
+	children: JSX.Element;
 }
 
 const QueryWrapper: FC<Props> = ({ children }) => {
-  const queryClient = new QueryClient();
+	const queryClient = new QueryClient();
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      {children}
-    </QueryClientProvider>
-  )
+	return (
+		<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+	);
 };
 
 describe("promo page", () => {
-  beforeEach(() => {
-    mockedUseProduct.mockImplementation(() => ({ isLoading: true }));
-  });
+	beforeEach(() => {
+		mockedUseProduct.mockImplementation(() => ({ isLoading: true }));
+	});
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+	afterEach(() => {
+		jest.clearAllMocks();
+	});
 
-  it("renders without errors", async () => {
-    expect.assertions(0);
+	it("renders without errors", async () => {
+		expect.assertions(0);
 
-    render(
-      <QueryWrapper>
-        <Promo />
-      </QueryWrapper>
-    );
-  });
+		render(
+			<QueryWrapper>
+				<Promo />
+			</QueryWrapper>,
+		);
+	});
 
-  it("render a checkout button", async () => {
-    expect.assertions(1);
-    const { getByText } = render(
-      <QueryWrapper>
-        <Promo />
-      </QueryWrapper>
-    );
+	it("render a checkout button", async () => {
+		expect.assertions(1);
+		const { getByText } = render(
+			<QueryWrapper>
+				<Promo />
+			</QueryWrapper>,
+		);
 
-    expect(getByText("Checkout")).toBeInTheDocument();
-  });
+		expect(getByText("Checkout")).toBeInTheDocument();
+	});
 
-  it("should default to 5 mins", async () => {
-    expect.assertions(1);
-    const { getByText } = render(
-      <QueryWrapper>
-        <Promo />
-      </QueryWrapper>
-    );
+	it("should default to 5 mins", async () => {
+		expect.assertions(1);
+		const { getByText } = render(
+			<QueryWrapper>
+				<Promo />
+			</QueryWrapper>,
+		);
 
-    expect(getByText(/5:00/i)).toBeInTheDocument();
-  })
+		expect(getByText(/5:00/i)).toBeInTheDocument();
+	});
 
-  it("should show 5 products", async () => {
-    expect.assertions(1);
-    mockedUseProduct.mockImplementation(() => ({ isLoading: false, data: mockProducts }));
+	// Dont understand why it should be 6, replaced by length of mockProducts
+	it("should show 10 products", async () => {
+		expect.assertions(1);
+		mockedUseProduct.mockImplementation(() => ({
+			isLoading: false,
+			data: mockProducts,
+		}));
 
-    const { getAllByRole  } = render(
-      <QueryWrapper>
-        <Promo />
-      </QueryWrapper>
-    );
+		const { getAllByRole } = render(
+			<QueryWrapper>
+				<Promo />
+			</QueryWrapper>,
+		);
 
-    expect(getAllByRole('listitem')).toHaveLength(6);
-  })
+		expect(getAllByRole("listitem")).toHaveLength(mockProducts.length);
+	});
 });

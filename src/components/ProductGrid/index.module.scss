@@ -1,0 +1,52 @@
+@use "../../variables" as variables;
+
+
+
+
+.container {
+  max-width: variables.$breakpoint-xl;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @media (min-width: variables.$breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: variables.$breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  .imageWrapper {
+    margin: 1rem; // Space between image and content
+  }
+
+
+  //  the bottle image on the left side of the card
+  @media (min-width: variables.$breakpoint-md) {
+    flex-direction: row;
+    align-items: center;
+
+  }
+
+  // display image on top again
+  @media (min-width: variables.$breakpoint-lg) {
+    flex-direction: column;
+  }
+
+  // bottle image on the left side of the card
+  @media (min-width: variables.$breakpoint-xl) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
