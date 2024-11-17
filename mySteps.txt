@@ -1,0 +1,24 @@
+
+
+Steps 
+
+Config 
+
+WHAT - added volta, to manage node version (pined node version of nvmrc)
+WHY - i stoped using nvm at some point, didn't want to install it on my local env, pinning the node version as a part of the volta config was faster
+
+
+Getting Info 
+- read about Gastby, haven't used it before i just know what it is and what it does nothing else
+
+
+PropTypes
+https://react.dev/blog/2024/04/25/react-19-upgrade-guide#removed-proptypes-and-defaultprops
+PropTypes were deprecated in April 2017 (v15.5.0). https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings
+A state with proptypes and ts types could be maintained by inferring the proptypes from the ts types, choose not to because of the linked doc
+
+
+Date on CountDown
+Date should be used to have a more exact timer, because the useTimeout doesn't makes it a guarantee that the time will actually go down every 1 second
+for example if you have tab performance saving on chrome, the timer will actually just stop.
+by using init date and calculating the difference between current time and initial time you get a correct date, might need to tweak the timeout time for this to work
