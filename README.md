@@ -1,3 +1,17 @@
+# Personal notes
+
+- this took me longer than i expected first time in gastby understanding how node creation works took me about 3hours
+- lost a lot of time with create pages, left countryPages.ts because of that (it doesnt work)
+- added biome linter
+- added volta instead of nvmrc 
+- removed proptypes from counter component
+- should had used date on counter component
+
+# Time 
+- counter took me about 1h
+- clicker took me 15 min
+- gatsby took me 6 hours 
+
 # React Coding Challenge
 
 ## Description
