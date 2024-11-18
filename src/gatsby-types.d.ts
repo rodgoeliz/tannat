@@ -36,6 +36,141 @@ type BooleanQueryOperatorInput = {
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Boolean']>>>;
 };
 
+type Country = Node & {
+  readonly cca3: Maybe<Scalars['String']>;
+  readonly children: ReadonlyArray<Node>;
+  readonly gatsbyPath: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly name: Maybe<Scalars['String']>;
+  readonly parent: Maybe<Node>;
+  readonly slug: Maybe<Scalars['String']>;
+};
+
+
+type Country_gatsbyPathArgs = {
+  filePath: InputMaybe<Scalars['String']>;
+};
+
+type CountryConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<CountryEdge>;
+  readonly group: ReadonlyArray<CountryGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<Country>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type CountryConnection_distinctArgs = {
+  field: CountryFieldSelector;
+};
+
+
+type CountryConnection_groupArgs = {
+  field: CountryFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type CountryConnection_maxArgs = {
+  field: CountryFieldSelector;
+};
+
+
+type CountryConnection_minArgs = {
+  field: CountryFieldSelector;
+};
+
+
+type CountryConnection_sumArgs = {
+  field: CountryFieldSelector;
+};
+
+type CountryEdge = {
+  readonly next: Maybe<Country>;
+  readonly node: Country;
+  readonly previous: Maybe<Country>;
+};
+
+type CountryFieldSelector = {
+  readonly cca3: InputMaybe<FieldSelectorEnum>;
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly gatsbyPath: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly slug: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountryFilterInput = {
+  readonly cca3: InputMaybe<StringQueryOperatorInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly gatsbyPath: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly slug: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountryGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<CountryEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<CountryGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<Country>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type CountryGroupConnection_distinctArgs = {
+  field: CountryFieldSelector;
+};
+
+
+type CountryGroupConnection_groupArgs = {
+  field: CountryFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type CountryGroupConnection_maxArgs = {
+  field: CountryFieldSelector;
+};
+
+
+type CountryGroupConnection_minArgs = {
+  field: CountryFieldSelector;
+};
+
+
+type CountryGroupConnection_sumArgs = {
+  field: CountryFieldSelector;
+};
+
+type CountrySortInput = {
+  readonly cca3: InputMaybe<SortOrderEnum>;
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly gatsbyPath: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly slug: InputMaybe<SortOrderEnum>;
+};
+
 type DateQueryOperatorInput = {
   readonly eq: InputMaybe<Scalars['Date']>;
   readonly gt: InputMaybe<Scalars['Date']>;
@@ -765,6 +900,7 @@ type PageInfo = {
 };
 
 type Query = {
+  readonly allCountry: CountryConnection;
   readonly allDirectory: DirectoryConnection;
   readonly allFile: FileConnection;
   readonly allSite: SiteConnection;
@@ -772,6 +908,7 @@ type Query = {
   readonly allSiteFunction: SiteFunctionConnection;
   readonly allSitePage: SitePageConnection;
   readonly allSitePlugin: SitePluginConnection;
+  readonly country: Maybe<Country>;
   readonly directory: Maybe<Directory>;
   readonly file: Maybe<File>;
   readonly site: Maybe<Site>;
@@ -779,6 +916,14 @@ type Query = {
   readonly siteFunction: Maybe<SiteFunction>;
   readonly sitePage: Maybe<SitePage>;
   readonly sitePlugin: Maybe<SitePlugin>;
+};
+
+
+type Query_allCountryArgs = {
+  filter: InputMaybe<CountryFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<CountrySortInput>>>;
 };
 
 
@@ -835,6 +980,18 @@ type Query_allSitePluginArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<SitePluginSortInput>>>;
+};
+
+
+type Query_countryArgs = {
+  cca3: InputMaybe<StringQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  gatsbyPath: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  slug: InputMaybe<StringQueryOperatorInput>;
 };
 
 
@@ -1766,6 +1923,18 @@ type StringQueryOperatorInput = {
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
   readonly regex: InputMaybe<Scalars['String']>;
 };
+
+type AllCountriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AllCountriesQuery = { readonly allCountry: { readonly edges: ReadonlyArray<{ readonly country: { readonly name: string | null, readonly cca3: string | null, readonly slug: string | null } }> } };
+
+type CountryPageQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+type CountryPageQuery = { readonly country: { readonly name: string | null, readonly cca3: string | null } | null };
 
 
 }

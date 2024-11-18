@@ -3,7 +3,7 @@ import Countdown from "../components/Countdown";
 import ProductGrid from "../components/ProductGrid";
 import HeaderComponent from "../components/HeaderCountdown";
 
-const Counter = (): JSX.Element => (
+const Counter = () => (
 	<>
 		<HeaderComponent />
 		<ProductGrid />
