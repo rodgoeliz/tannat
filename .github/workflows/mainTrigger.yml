@@ -1,0 +1,15 @@
+name: Log Commiasd
+
+on:
+  workflow_dispatch:
+
+jobs:
+  log-messages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log commit message
+        run: echo "Manually triggered log on dev branch"
